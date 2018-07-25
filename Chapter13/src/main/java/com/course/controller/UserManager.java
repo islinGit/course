@@ -78,7 +78,7 @@ public class UserManager {
         Boolean x = verifyCookies(request);
         int i = 0;
         if(x==true){
-            i = template.update("updateUserInfo",user);
+            i = template.update("getUpdateUserInfo",user);
         }
         log.info("更新数据的条目数为："+i);
         return i;

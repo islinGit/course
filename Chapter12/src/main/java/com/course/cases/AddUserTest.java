@@ -20,7 +20,7 @@ public class AddUserTest {
     @Test(dependsOnGroups = "loginTrue",description = "添加用户接口测试")
     public void addUser() throws IOException, InterruptedException {
         SqlSession session = DatabaseUtil.getSqlSession();
-        AddUserCase addUserCase = session.selectOne("addUserCase",1);
+        AddUserCase addUserCase = session.selectOne("addUserCase",8);
         System.out.printf(addUserCase.toString());
         System.out.println(TestConfig.addUserUrl);
 
@@ -40,6 +40,7 @@ public class AddUserTest {
     private String getResult(AddUserCase addUserCase) throws IOException {
         HttpPost post = new HttpPost(TestConfig.addUserUrl);
         JSONObject param = new JSONObject();
+        param.put("id",addUserCase.getId());
         param.put("userName",addUserCase.getUserName());
         param.put("password",addUserCase.getPassword());
         param.put("sex",addUserCase.getSex());
